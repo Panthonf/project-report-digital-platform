@@ -33,9 +33,9 @@
 \subsection{ภาพรวมของระบบ (System Overview)}
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=0.6\textwidth]{800px-Briny_Beach.jpg}
+        \includegraphics[width=1\textwidth]{img/Overview System Design.png}
     \end{center}
-    \caption[Poem]{The Walrus and the Carpenter}
+    \caption[Poem]{System Overview}
     \label{fig:walrus}
 \end{figure}
 
@@ -50,16 +50,36 @@
 \end{itemize}
 
 \subsubsection{ระบบการอัพโหลดและการทำนายรอยโรคในช่องปากโดย AI}
-ระบบการอัพโหลดและการทำนายรอยโรคในช่องปากโดย AI จะมีการทำงานดังนี้
+
 
 \subsubsection{ระบบการวงรอยโรคสำหรับทันตแพทย์ (Annotation)}
 
-\subsub
+\subsubsection{ระบบ Tagging รอยโรคในช่องปาก}
+
+\subsubsection{ระบบการแพทย์ทางไกล (Telemedicine)}
 
 
 
 \subsection{โครงสร้างฐานข้อมูล (Database Schema)}
-ใส่ ER Diagram ของฐานข้อมูลและอธิบายการทำงาน
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/database.png}
+    \end{center}
+    \caption[Poem]{Database Schema}
+    \label{fig:data_schema}
+\end{figure}
+จากรูปที่ \ref{fig:data_schema} จะเป็นโครงสร้างของฐานข้อมูลที่ใช้ในระบบ โดยมีรายละเอียดดังนี้
+
+
+
+Database diagram ของระบบของเรา ได้ทำการเเบ่งผู้ใช้งานเป็น 2 ส่วนหลัก ๆ คือ patients เเละ users โดย patients คือ คนไข้ทั่วไป เเละ users คือกลุ่มทันตเเพทย์ พนักงานสาธารณสุขเเละผู้ดูแลระบบ รวมถึงอสม.
+
+ตาราง comment ระบบจะให้เฉพาะทันตเเพทย์ที่มีใบ NL ในการ comment ข้อมูลเท่านั้น โดยสามารถบอกได้ว่าเห็นด้วยหรือไม่เห็นด้วย ด้วยเหตุผลอย่างไร 
+
+ตาราง \texttt{users\_log} เป็น table ที่สามารถดูได้เฉพาะ user ที่เป็นผู้ดูแลระบบเท่านั้น 
+โดยจะบอกเกี่ยวกับ action ของผู้ใช้งานทุกคนว่า ได้มี interact กับระบบอย่างไรบ้าง โดยที่ action จะมี login, logout , delete รวมถึว action ที่สำคัญต่าง ๆ ไม่ว่าจะเป็น delete user, การ uplaod image โดยเก็บเป็น unixtime เพื่อ ทำให้ง่ายต่อการ parse
+
+การ encrypt ข้อมูล  เนื่องจากระบบของเรามีข้อมูลส่วนตัวมากมายที่เก็บเอาไว้ เราจึงต้องทำการ encrypt ข้อมูลตาม requirement ที่เราได้รับมา โดยจะมี file รูปภาพที่เป็นความลับของคนไข้เเละทำการ hash password เพื่อความปลอดภัย
 
 \section{User Interface}
 ใส่ภาพหน้าจอของระบบ และอธิบาย
