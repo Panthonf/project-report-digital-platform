@@ -74,12 +74,146 @@
 
 Database diagram ของระบบของเรา ได้ทำการเเบ่งผู้ใช้งานเป็น 2 ส่วนหลัก ๆ คือ patients เเละ users โดย patients คือ คนไข้ทั่วไป เเละ users คือกลุ่มทันตเเพทย์ พนักงานสาธารณสุขเเละผู้ดูแลระบบ รวมถึงอสม.
 
-ตาราง comment ระบบจะให้เฉพาะทันตเเพทย์ที่มีใบ NL ในการ comment ข้อมูลเท่านั้น โดยสามารถบอกได้ว่าเห็นด้วยหรือไม่เห็นด้วย ด้วยเหตุผลอย่างไร 
+ตาราง comment ระบบจะให้เฉพาะทันตเเพทย์ที่มีใบ NL ในการ comment ข้อมูลเท่านั้น โดยสามารถบอกได้ว่าเห็นด้วยหรือไม่เห็นด้วย ด้วยเหตุผลอย่างไร
 
-ตาราง \texttt{users\_log} เป็น table ที่สามารถดูได้เฉพาะ user ที่เป็นผู้ดูแลระบบเท่านั้น 
+ตาราง \texttt{users\_log} เป็น table ที่สามารถดูได้เฉพาะ user ที่เป็นผู้ดูแลระบบเท่านั้น
 โดยจะบอกเกี่ยวกับ action ของผู้ใช้งานทุกคนว่า ได้มี interact กับระบบอย่างไรบ้าง โดยที่ action จะมี login, logout , delete รวมถึว action ที่สำคัญต่าง ๆ ไม่ว่าจะเป็น delete user, การ uplaod image โดยเก็บเป็น unixtime เพื่อ ทำให้ง่ายต่อการ parse
 
 การเข้ารหัสข้อมูล (Encryption) เนื่องจากระบบของเรามีข้อมูลส่วนตัวมากมายที่เก็บเอาไว้ เราจึงต้องทำการเข้ารหัสข้อมูลตาม requirement ที่เราได้รับมา โดยจะมี file รูปภาพที่เป็นความลับของคนไข้เเละทำการเข้ารหัส password เพื่อความปลอดภัย
 
-\section{User Interface}
-ใส่ภาพหน้าจอของระบบ และอธิบาย
+\section{ส่วนเชื่อมต่อระหว่างผู้ใช้งานกับระบบ (User Interface)}
+\subsection{ผู้ใช้งาน (User)}
+\subsubsection{หน้าเข้าสู่ระบบ (Login Page)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/user/1-login-page.png}
+    \end{center}
+    \caption[Poem]{Login Page}
+    \label{fig:login}
+\end{figure}
+
+\newpage
+\subsubsection{หน้าลงทะเบียน (Register Page)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/user/2-register-page.png}
+    \end{center}
+    \caption[Poem]{Register Page}
+    \label{fig:register}
+\end{figure}
+
+\subsubsection{หน้าประวัติการอัพโหลดรูปภาพ (History Page)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/user/3-1-histort-page.png}
+    \end{center}
+    \caption[Poem]{History Page}
+    \label{fig:history}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/user/3-histort-page.png}
+    \end{center}
+    \caption[Poem]{History Page}
+    \label{fig:history_2}
+\end{figure}
+
+\newpage
+\subsubsection{หน้าอัพโหลดรูปภาพ (Upload Page)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/user/4-1-upload-image-pop-up.png}
+    \end{center}
+    \caption[Poem]{Upload Page}
+    \label{fig:upload}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/user/4-upload-image-pop-up.png}
+    \end{center}
+    \caption[Poem]{Upload Page}
+    \label{fig:upload_2}
+\end{figure}
+
+\newpage
+\subsubsection{หน้าแสดงผลการทำนายรอยโรคในช่องปาก (Result Page)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/user/predictionPage-5.png}
+    \end{center}
+    \caption[Poem]{Result Page}
+    \label{fig:result}
+\end{figure}
+
+\newpage
+\subsubsection{หน้าสำหรับวงรอยโรคในช่องปาก (Annotation Page)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/user/6-annotation-page.png}
+    \end{center}
+    \caption[Poem]{Annotation Page}
+    \label{fig:annotation}
+\end{figure}
+
+\subsubsection{หน้าแก้ไขข้อมูลส่วนตัว (Edit Profile Page)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/user/7-user-management-page.png}
+    \end{center}
+    \caption[Poem]{Edit Profile Page}
+    \label{fig:edit_profile}
+\end{figure}
+
+
+\newpage
+\subsection{ผู้ดูแลระบบ (Admin)}
+
+\subsubsection{หน้าอัพโหลดรูปภาพทั้งหมด (Upload Page)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/admin/1-admin-historyPage.png}
+    \end{center}
+    \caption[Poem]{Upload Page}
+    \label{fig:admin_upload}
+\end{figure}
+
+
+\subsubsection{หน้าจัดการผู้ใช้งาน (User Management Page)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/admin/2-admin-user-management-page.png}
+    \end{center}
+    \caption[Poem]{User Management Page}
+    \label{fig:user_management}
+\end{figure}
+
+\newpage
+\subsubsection{หน้าจัดการข้อมูล (Data Management Page)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/admin/3-admin-image-manamgement.png}
+    \end{center}
+    \caption[Poem]{Data Management Page}
+    \label{fig:data_management}
+\end{figure}
+
+\subsubsection{หน้าจัดการข้อมูล (Data Management Page) โดยแยกตามผู้ใช้งาน}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/admin/4-admin-image-manamgement-byuser.png}
+    \end{center}
+    \caption[Poem]{Data Management Page}
+    \label{fig:data_management_byuser}
+\end{figure}
+
+\newpage
+\subsubsection{หน้าจัดการผู้ใช้งาน (User Management Page) โดยแยกตามผู้ใช้งาน}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/admin/5-admin-edit-user-page.png}
+    \end{center}
+    \caption[Poem]{Data Management Page}
+    \label{fig:data_management_bydisease}
+\end{figure}
