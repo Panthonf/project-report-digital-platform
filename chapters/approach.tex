@@ -29,24 +29,59 @@
 % \caption[Poem]{The Walrus and the Carpenter}
 % \label{fig:walrus}
 % \end{figure}
-
-\subsection{ภาพรวมของระบบ (System Overview)}
+\subsection{การทำงานของระบบ (System Architecture)}
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1\textwidth]{img/Overview System Design.png}
+        \includegraphics[width=0.9\textwidth]{img/system achitecture.png}
     \end{center}
-    \caption[Poem]{System Overview}
-    \label{fig:walrus}
+    \caption[Poem]{System Architecture}
+    \label{fig:system_overview}
 \end{figure}
 
-ภาพรวมการทำงานของระบบนี้ จะมีส่วนการทำงานหลัก ๆ ดังนี้
+จากรูปที่ \ref{fig:system_overview} จะเป็นภาพรวมของระบบที่เราได้ทำการออกแบบขึ้น โดยมีรายละเอียดดังนี้
 \begin{itemize}
-    \item ระบบการอัพโหลดและการทำนายรอยโรคในช่องปากโดย AI
-    \item ระบบประวัติการอัพโหลดและการทำนายรอยโรคในช่องปากสำหรับแต่ละผู้ใช้งาน
-    \item ระบบการวงรอยโรคสำหรับทันตแพทย์ (Annotation)
-    \item ระบบการแพทย์ทางไกล (Telemedicine) สำหรับให้ความคิดเห็นระหว่างทันตแพทย์ผู้เชี่ยวชาญกับทันตแพทย์ทั่วไป, อาสาสมัครสาธารณสุขประจำหมู่บ้าน, ทันตบุคลากรและผู้ใช้ทั่วไป
-    \item ระบบจัดการผู้ใช้งาน (User Management) และระบบติดตามผู้ใช้งาน (User Tracking)
-    \item ระบบจัดการข้อมูล (Data Management)
+    \item Frontend
+
+          ส่วนหน้าบ้าน (Frontend) เป็นส่วนการพัฒนาเพื่อแสดง User Interface (UI) โดยโครงการนี้ได้ใช้เทคโนโลยี React ร่วมกับ Mantine UI ในการออกแบบและสร้างส่วนติดต่อผู้ใช้ (UI) โดยมีหน้าที่แสดงผลลัพธ์ต่อผู้ใช้ในรูปแบบที่เข้าใจง่าย รับข้อมูลป้อนจากผู้ใช้ผ่านอินเทอร์เฟซต่าง ๆ เช่น ปุ่ม ฟิลด์ข้อความ ฯลฯ และสื่อสารกับ API เพื่อส่งคำร้องขอและรับผลลัพธ์
+    \item Backend
+
+          ส่วนหลังบ้าน (Backend) เป็นส่วนที่ทำหน้าที่รับข้อมูลจากผู้ใช้ จากนั้นทำการประมวลผลข้อมูล และส่งข้อมูลกลับไปยังผู้ใช้ โดยโครงการนี้ได้ใช้เทคโนโลยี Fastify เว็บเฟรมเวิร์ค Node.js ร่วมกับ Prisma ORM ในการจัดการข้อมูลในฐานข้อมูล รวมถึงทำการสื่อสารกับฐานข้อมูล PostgreSQL และ Minio (Object Storage) ในการจัดการข้อมูลที่เป็นไฟล์
+\end{itemize}
+
+\subsection{เส้นทางของผู้ใช้ (User Flow)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/userflow.png}
+    \end{center}
+    \caption[Poem]{User Flow}
+    \label{fig:user_flow}
+\end{figure}
+
+จากรูปที่ \ref{fig:user_flow} จะเป็นเส้นทางของผู้ใช้งานที่เข้าใช้งานระบบ โดยมีรายละเอียดดังนี้
+
+\subsubsection{ผู้สร้างงานกิจกรรม (Event Manager)}
+\begin{itemize}
+    \item ผู้ใช้เข้าสู่ระบบโดยใช้ Google Account
+    \item ผู้ใช้สร้าง Event ใหม่ โดยป้อนข้อมูลต่างๆ เช่น ชื่องานกิจกรรม รายละเอียด วันเวลา สถานที่ เป็นต้น
+    \item ผู้ใช้สร้าง Event เสร็จสิ้น จะมี QR Code หรือ Access Link สำหรับนำไปให้ผู้นำเสนอโครงการ (Presenter) สำหรับเพิ่มโครงการของตนและผู้เข้าร่วมกิจกรรม (Guest) สำหรับเข้าร่วมกิจกรรม
+    \item ผู้ใช้สามารถดูผลลัพธ์ (Chart และ Ranking) ของโครงการต่าง ๆ ที่เข้าร่วมกิจกรรมในระหว่างจัดงานกิจกรรม
+
+\end{itemize}
+
+\subsubsection{ผู้นำเสนอโครงการ (Presenter)}
+\begin{itemize}
+    \item ผู้ใช้เข้าสู่ระบบโดยใช้ Google Account
+    \item ผู้ใช้สร้าง Project ใหม่ โดยป้อนข้อมูลต่าง ๆ เช่น ชื่อโครงการ รายละเอียด รูปภาพ ลิงก์ และไฟล์อื่น ๆ ที่เกี่ยวข้อง
+    \item ผู้ใช้ดูผลลัพธ์ว่าโครงการของตนได้รับ Virtual Money จากผู้เข้าร่วมกิจกรรม (Guest) และความคิดเห็นเกี่ยวกับโครงการของตนหลังจากเสร็จสิ้นงานกิจกรรม
+
+\end{itemize}
+
+\subsubsection{ผู้เข้าร่วมกิจกรรม (Guest)}
+\begin{itemize}
+    \item ผู้ใช้เข้าร่วม Event โดยใช้ QR COde หรือ Access Link ที่ได้รับจาก Event Manager
+    \item ผู้ใช้เข้าสู่ระบบโดยใช้ Google Account
+    \item ผู้ใช้ดูรายละเอียดของงานกิจกรรมที่จัดขึ้น รวมถึงโครงการที่เข้าร่วมกิจกรรม
+    \item ผู้ใช้สามารถให้ Virtual Money และแสดงความคิดเห็นเกี่ยวกับ Project ต่าง ๆ ที่เข้าร่วมกิจกรรมได้
 \end{itemize}
 
 \subsection{โครงสร้างฐานข้อมูล (Database Schema)}
