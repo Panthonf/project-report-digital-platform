@@ -87,23 +87,13 @@
 \subsection{โครงสร้างฐานข้อมูล (Database Schema)}
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{img/database.png}
+        \includegraphics[width=0.9\textwidth]{img/database schama.png}
     \end{center}
     \caption[Poem]{Database Schema}
     \label{fig:data_schema}
 \end{figure}
 จากรูปที่ \ref{fig:data_schema} จะเป็นโครงสร้างของฐานข้อมูลที่ใช้ในระบบ โดยมีรายละเอียดดังนี้
 
-
-
-Database diagram ของระบบของเรา ได้ทำการเเบ่งผู้ใช้งานเป็น 2 ส่วนหลัก ๆ คือ patients เเละ users โดย patients คือ คนไข้ทั่วไป เเละ users คือกลุ่มทันตเเพทย์ พนักงานสาธารณสุขเเละผู้ดูแลระบบ รวมถึงอสม.
-
-ตาราง comment ระบบจะให้เฉพาะทันตเเพทย์ที่มีใบ NL ในการ comment ข้อมูลเท่านั้น โดยสามารถบอกได้ว่าเห็นด้วยหรือไม่เห็นด้วย ด้วยเหตุผลอย่างไร
-
-ตาราง \texttt{users\_log} เป็น table ที่สามารถดูได้เฉพาะ user ที่เป็นผู้ดูแลระบบเท่านั้น
-โดยจะบอกเกี่ยวกับ action ของผู้ใช้งานทุกคนว่า ได้มี interact กับระบบอย่างไรบ้าง โดยที่ action จะมี login, logout , delete รวมถึว action ที่สำคัญต่าง ๆ ไม่ว่าจะเป็น delete user, การ uplaod image โดยเก็บเป็น unixtime เพื่อ ทำให้ง่ายต่อการ parse
-
-การเข้ารหัสข้อมูล (Encryption) เนื่องจากระบบของเรามีข้อมูลส่วนตัวมากมายที่เก็บเอาไว้ เราจึงต้องทำการเข้ารหัสข้อมูลตาม requirement ที่เราได้รับมา โดยจะมี file รูปภาพที่เป็นความลับของคนไข้เเละทำการเข้ารหัส password เพื่อความปลอดภัย
 
 \section{ส่วนเชื่อมต่อระหว่างผู้ใช้งานกับระบบ (User Interface)}
 \subsection{ผู้ใช้งาน (User)}
