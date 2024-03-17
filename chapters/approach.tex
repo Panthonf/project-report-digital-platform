@@ -84,150 +84,174 @@
     \item ผู้ใช้สามารถให้ Virtual Money และแสดงความคิดเห็นเกี่ยวกับ Project ต่าง ๆ ที่เข้าร่วมกิจกรรมได้
 \end{itemize}
 
+\newpage
 \subsection{โครงสร้างฐานข้อมูล (Database Schema)}
-\begin{figure}[h]
+\begin{figure}[hb]
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{img/database schama.png}
+        \includegraphics[width=0.8\textwidth]{img/database schama.png}
     \end{center}
     \caption[Poem]{Database Schema}
     \label{fig:data_schema}
 \end{figure}
-จากรูปที่ \ref{fig:data_schema} จะเป็นโครงสร้างของฐานข้อมูลที่ใช้ในระบบ โดยมีรายละเอียดดังนี้
+จากรูปที่ \ref{fig:data_schema} จะเป็นโครงสร้างของฐานข้อมูลที่ใช้ในระบบ โดยมีทั้งหมด 9  ตาราง ดังนี้
 
 
+\begin{table}[hb]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        ชื่อคอลัมน์               & ชนิดข้อมูล   & คำอธิบาย          \\ \hline
+        \verb |first_name_th| & VARCHAR   & ชื่อภาษาไทย       \\ \hline
+        \verb |last_name_th|  & VARCHAR   & นามสกุลภาษาไทย   \\ \hline
+        \verb |first_name_en| & VARCHAR   & ชื่อภาษาอังกฤษ     \\ \hline
+        \verb |last_name_en|  & VARCHAR   & นามสกุลภาษาอังกฤษ \\ \hline
+        \verb |email|         & VARCHAR   & อีเมล์            \\ \hline
+        \verb |affiliation|   & TEXT      & สังกัด            \\ \hline
+        \verb |profile_pic|   & TEXT      & รูปภาพโปรไฟล์     \\ \hline
+        \verb |role|          & VARCHAR   & บทบาทของผู้ใช้งาน  \\ \hline
+        \verb |created_at|    & TIMESTAMP & วันที่สร้างข้อมูล     \\ \hline
+        \verb |updated_at|    & TIMESTAMP & วันที่อัปเดตข้อมูล    \\ \hline
+    \end{tabular}
+    \caption{ตารางข้อมูลผู้ใช้งาน (Users)}
+    \label{tab:user_data}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        ชื่อคอลัมน์                  & ชนิดข้อมูล   & คำอธิบาย                                 \\ \hline
+        \verb |event_name|       & VARCHAR   & ชื่องานกิจกรรม                            \\ \hline
+        \verb |start_date|       & DATE      & วันที่เริ่มงานกิจกรรม                        \\ \hline
+        \verb |end_date|         & DATE      & วันที่สิ้นสุดงานกิจกรรม                       \\ \hline
+        \verb |description|      & TEXT      & รายละเอียดงานกิจกรรม                     \\ \hline
+        \verb |submit_start|     & DATE      & วันที่เริ่มรับส่งโครงการ                      \\ \hline
+        \verb |submit_end|       & DATE      & วันที่สิ้นสุดรับส่งโครงการ                     \\ \hline
+        \verb |number_of_member| & INTEGER   & จำนวนสมาชิกของโครงการ                    \\ \hline
+        \verb |virtual_money|    & INTEGER   & จำนวนเงินเสมือนที่จะให้แขกผู้เข้าร่วมงาน (Guest) \\ \hline
+        \verb |unit_money|       & VARCHAR   & หน่วยเงินเสมือนที่จะให้แขกผู้เข้าร่วมงาน (Guest) \\ \hline
+        \verb |published|        & BOOLEAN   & สถานะการเผยแพร่ของงานกิจกรรม             \\ \hline
+        \verb |organization|     & TEXT      & สังกัดของงานกิจกรรม                       \\ \hline
+        \verb |video_link|       & TEXT      & ลิงก์วิดีโอที่เกี่ยวข้องกับงานกิจกรรม             \\ \hline
+        \verb |user_id|          & INTEGER   & รหัสผู้ใช้งานที่สร้างงานกิจกรรม                \\ \hline
+        \verb |location|         & TEXT      & สถานที่จัดงานกิจกรรม                       \\ \hline
+        \verb |created_at|       & TIMESTAMP & วันที่สร้างข้อมูล                            \\ \hline
+        \verb |updated_at|       & TIMESTAMP & วันที่อัปเดตข้อมูล                           \\ \hline
+    \end{tabular}
+    \caption{ตารางข้อมูลงานกิจกรรม (Events)}
+    \label{tab:event_data}
+\end{table}
+
+\begin{table}[hb]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        ชื่อคอลัมน์             & ชนิดข้อมูล   & คำอธิบาย                     \\ \hline
+        \verb |title|       & VARCHAR   & ชื่อโครงการ                  \\ \hline
+        \verb |description| & TEXT      & รายละเอียดของโครงการ        \\ \hline
+        \verb |user_id|     & INTEGER   & รหัสผู้ใช้งานที่สร้างโครงการ      \\ \hline
+        \verb |event_id|    & INTEGER   & รหัสงานกิจกรรมที่โครงการเข้าร่วม \\ \hline
+        \verb |created_at|  & TIMESTAMP & วันที่สร้างข้อมูล                \\ \hline
+    \end{tabular}
+    \caption{ตารางข้อมูลโครงการ (Projects)}
+    \label{tab:project_data}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        ชื่อคอลัมน์            & ชนิดข้อมูล   & คำอธิบาย                   \\ \hline
+        \verb |amount|     & INTEGER   & จำนวนเงินเสมือนที่ได้รับ        \\ \hline
+        \verb |project_id| & INTEGER   & รหัสโครงการที่ได้รับเงิน       \\ \hline
+        \verb |event_id|   & INTEGER   & รหัสงานกิจกรรมที่ได้รับเงิน     \\ \hline
+        \verb |guest_id|   & INTEGER   & รหัสผู้เข้าร่วมกิจกรรมที่ได้รับเงิน \\ \hline
+        \verb |created_at| & TIMESTAMP & วันที่สร้างข้อมูล              \\ \hline
+        \verb |updated_at| & TIMESTAMP & วันที่อัปเดตข้อมูล             \\ \hline
+    \end{tabular}
+    \caption{ตารางข้อมูลเงินเสมือน (Virtual Money)}
+    \label{tab:virtual_money_data}
+\end{table}
+
+\begin{table}[hb]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        ชื่อคอลัมน์               & ชนิดข้อมูล   & คำอธิบาย           \\ \hline
+        \verb |first_name_th| & VARCHAR   & ชื่อจริงภาษาไทย     \\ \hline
+        \verb |last_name_th|  & VARCHAR   & นามสกุลภาษาไทย    \\ \hline
+        \verb |first_name_en| & VARCHAR   & ชื่อจริงภาษาอังกฤษ   \\ \hline
+        \verb |last_name_en|  & VARCHAR   & นามสกุลภาษาอังกฤษ  \\ \hline
+        \verb |email|         & TEXT      & ที่อยู่อีเมล          \\ \hline
+        \verb |profile_pic|   & TEXT      & รูปภาพโปรไฟล์      \\ \hline
+        \verb |virtual_money| & INTEGER   & จำนวนเงินเสมือนที่มีอยู่ \\ \hline
+        \verb |created_at|    & TIMESTAMP & วันที่สร้างข้อมูล      \\ \hline
+    \end{tabular}
+    \caption{ตารางข้อมูลแขกผู้เข้าร่วมกิจกรรม (Guests)}
+    \label{tab:guest_data}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        ชื่อคอลัมน์               & ชนิดข้อมูล   & คำอธิบาย                \\ \hline
+        \verb |event_id|      & INTEGER   & รหัสงานกิจกรรมที่ได้รับเงิน  \\ \hline
+        \verb |thumbnail|     & TEXT      & รูปภาพตัวอย่างโครงการ    \\ \hline
+        \verb |thumbnail_url| & TEXT      & ลิงก์รูปภาพตัวอย่างโครงการ \\ \hline
+        \verb |created_at|    & TIMESTAMP & วันที่สร้างข้อมูล           \\ \hline
+        \verb |updated_at|    & TIMESTAMP & วันที่อัปเดตข้อมูล          \\ \hline
+    \end{tabular}
+    \caption{ตารางข้อมูลภาพตัวอย่างโครงการ (Thumbnails)}
+    \label{tab:thumbnail_data}
+\end{table}
+
+\begin{table}[hb]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        ชื่อคอลัมน์               & ชนิดข้อมูล   & คำอธิบาย                     \\ \hline
+        \verb |project_id|    & INTEGER   & รหัสโครงการที่เกี่ยวข้องกับเอกสาร \\ \hline
+        \verb |document_name| & TEXT      & ชื่อเอกสาร                   \\ \hline
+        \verb |document_url|  & TEXT      & ลิงก์เอกสาร                  \\ \hline
+        \verb |created_at|    & TIMESTAMP & วันที่สร้างข้อมูล                \\ \hline
+        \verb |updated_at|    & TIMESTAMP & วันที่อัปเดตข้อมูล               \\ \hline
+    \end{tabular}
+    \caption{ตารางข้อมูลเอกสารที่เกี่ยวข้องกับงานกิจกรรม (Documents)}
+    \label{tab:document_data}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        ชื่อคอลัมน์                & ชนิดข้อมูล   & คำอธิบาย                        \\ \hline
+        \verb |project_id|     & INTEGER   & รหัสโครงการที่เกี่ยวข้องกับความคิดเห็น \\ \hline
+        \verb |comment_better| & TEXT      & ความคิดเห็นที่ดีของโครงการ         \\ \hline
+        \verb |comment_idea|   & TEXT      & ความคิดเห็นที่เสนอไอเดียใหม่        \\ \hline
+        \verb |comment_ilike|  & TEXT      & ความคิดเห็นที่ชอบของโครงการ       \\ \hline
+        \verb |created_at|     & TIMESTAMP & วันที่สร้างข้อมูล                   \\ \hline
+        \verb |updated_at|     & TIMESTAMP & วันที่อัปเดตข้อมูล                  \\ \hline
+    \end{tabular}
+    \caption{ตารางข้อมูลความคิดเห็นของผู้เข้าร่วมกิจกรรม (Comments)}
+    \label{tab:comment_data}
+\end{table}
+
+\begin{table}[hb]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        ชื่อคอลัมน์                   & ชนิดข้อมูล   & คำอธิบาย                    \\ \hline
+        \verb |project_id|        & INTEGER   & รหัสโครงการที่เกี่ยวข้องกับรูปภาพ \\ \hline
+        \verb |project_image|     & TEXT      & รูปภาพโครงการ              \\ \hline
+        \verb |project_image_url| & TEXT      & ลิงก์รูปภาพโครงการ           \\ \hline
+        \verb |created_at|        & TIMESTAMP & วันที่สร้างข้อมูล               \\ \hline
+        \verb |updated_at|        & TIMESTAMP & วันที่อัปเดตข้อมูล              \\ \hline
+    \end{tabular}
+    \caption{ตารางข้อมูลรูปภาพที่เกี่ยวข้องกับโครงการ (Project Images)}
+    \label{tab:project_images_data}
+\end{table}
+
+\clearpage % 
 \section{ส่วนเชื่อมต่อระหว่างผู้ใช้งานกับระบบ (User Interface)}
-\subsection{ผู้ใช้งาน (User)}
-\subsubsection{หน้าเข้าสู่ระบบ (Login Page)}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/user/1-login-page.png}
-    \end{center}
-    \caption[Poem]{Login Page}
-    \label{fig:login}
-\end{figure}
-
-\newpage
-\subsubsection{หน้าลงทะเบียน (Register Page)}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/user/2-register-page.png}
-    \end{center}
-    \caption[Poem]{Register Page}
-    \label{fig:register}
-\end{figure}
-
-\subsubsection{หน้าประวัติการอัพโหลดรูปภาพ (History Page)}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/user/3-1-histort-page.png}
-    \end{center}
-    \caption[Poem]{History Page}
-    \label{fig:history}
-\end{figure}
-
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/user/3-histort-page.png}
-    \end{center}
-    \caption[Poem]{History Page}
-    \label{fig:history_2}
-\end{figure}
-
-\newpage
-\subsubsection{หน้าอัพโหลดรูปภาพ (Upload Page)}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/user/4-1-upload-image-pop-up.png}
-    \end{center}
-    \caption[Poem]{Upload Page}
-    \label{fig:upload}
-\end{figure}
-
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/user/4-upload-image-pop-up.png}
-    \end{center}
-    \caption[Poem]{Upload Page}
-    \label{fig:upload_2}
-\end{figure}
-
-\newpage
-\subsubsection{หน้าแสดงผลการทำนายรอยโรคในช่องปาก (Result Page)}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/user/predictionPage-5.png}
-    \end{center}
-    \caption[Poem]{Result Page}
-    \label{fig:result}
-\end{figure}
-
-\newpage
-\subsubsection{หน้าสำหรับวงรอยโรคในช่องปาก (Annotation Page)}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/user/6-annotation-page.png}
-    \end{center}
-    \caption[Poem]{Annotation Page}
-    \label{fig:annotation}
-\end{figure}
-
-\subsubsection{หน้าแก้ไขข้อมูลส่วนตัว (Edit Profile Page)}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/user/7-user-management-page.png}
-    \end{center}
-    \caption[Poem]{Edit Profile Page}
-    \label{fig:edit_profile}
-\end{figure}
-
-
-\newpage
-\subsection{ผู้ดูแลระบบ (Admin)}
-
-\subsubsection{หน้าอัพโหลดรูปภาพทั้งหมด (Upload Page)}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/admin/1-admin-historyPage.png}
-    \end{center}
-    \caption[Poem]{Upload Page}
-    \label{fig:admin_upload}
-\end{figure}
-
-
-\subsubsection{หน้าจัดการผู้ใช้งาน (User Management Page)}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/admin/2-admin-user-management-page.png}
-    \end{center}
-    \caption[Poem]{User Management Page}
-    \label{fig:user_management}
-\end{figure}
-
-\newpage
-\subsubsection{หน้าจัดการข้อมูล (Data Management Page)}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/admin/3-admin-image-manamgement.png}
-    \end{center}
-    \caption[Poem]{Data Management Page}
-    \label{fig:data_management}
-\end{figure}
-
-\subsubsection{หน้าจัดการข้อมูล (Data Management Page) โดยแยกตามผู้ใช้งาน}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/admin/4-admin-image-manamgement-byuser.png}
-    \end{center}
-    \caption[Poem]{Data Management Page}
-    \label{fig:data_management_byuser}
-\end{figure}
-
-\newpage
-\subsubsection{หน้าจัดการผู้ใช้งาน (User Management Page) โดยแยกตามผู้ใช้งาน}
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{img/admin/5-admin-edit-user-page.png}
-    \end{center}
-    \caption[Poem]{Data Management Page}
-    \label{fig:data_management_bydisease}
-\end{figure}
+\subsection{หน้าแรก (Home Page)}
