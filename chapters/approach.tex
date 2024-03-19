@@ -254,4 +254,167 @@
 
 \clearpage % 
 \section{ส่วนเชื่อมต่อระหว่างผู้ใช้งานกับระบบ (User Interface)}
-\subsection{หน้าแรก (Home Page)}
+
+
+โดยแบ่งเป็น 3 ผู้ใช้งาน คือ ผู้สร้างงานกิจกรรม (Event manager), ผู้นำเสนอผลงาน (Presenter), ผู้เข้าร่วมงาน (Guest)
+\subsection{หน้าเริ่มต้นการใช้งาน (Homepage)}
+โดยแบ่ง Tab เป็น Home, Service, About us และ Contact สำหรับ Event manager และ Presenter
+
+\begin{figure}[h!] %
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/homepage.png}
+    \end{center}
+    \caption{หน้า Homepage}
+    \label{fig:homepage}
+
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/service.png}
+    \end{center}
+    \caption{หน้า Service}
+    \label{fig:service}
+\end{figure}
+
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/aboutus.png}
+    \end{center}
+    \caption{หน้า About us}
+    \label{fig:aboutus}
+
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/contact.png}
+    \end{center}
+    \caption{หน้า Contact}
+    \label{fig:contact}
+\end{figure}
+
+\subsection{หน้าเข้าสู่ระบบ (Login)}
+Login ด้วย Google account สำหรับ Event manager และ Presenter
+
+\begin{figure}[h!] %
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/login.png}
+    \end{center}
+    \caption{หน้า Login สำหรับ Event manager และ Presenter}
+    \label{fig:login}
+\end{figure}
+
+\subsection{ผู้สร้างงานกิจกรรม (Event manager)}
+\begin{figure}[h!] %
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/event-dashboard.png}
+    \end{center}
+    \caption{หน้าแสดงกิจกรรมที่สร้าง (Event manager dashboard)}
+    \label{fig:event-dashboard}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/event-info.png}
+    \end{center}
+    \caption{หน้าแสดงข้อมูลรายละเอียดของกิจกรรมที่สร้าง โดยแบ่ง Tab เป็น Event information, Project และ Result}
+    \label{fig:event-info}
+
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/project-list.png}
+    \end{center}
+    \caption{หน้าแสดงรายการโครงการที่เข้าร่วมกิจกรรม}
+    \label{fig:project-list}
+\end{figure}
+
+\begin{figure}[t]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/result.png}
+    \end{center}
+    \caption{หน้าแสดงผลลัพธ์ของโครงการที่เข้าร่วมกิจกรรม โดยแสดงเป็น Ranking และตาราง Virtual Money}
+    \label{fig:result}
+
+    \begin{center}
+        \includegraphics[height=0.7\textwidth]{img/ui/ranking-table-result.png}
+    \end{center}
+    \caption{ตารางแสดงผลลัพธ์ของโครงการที่เข้าร่วมกิจกรรม}
+    \label{fig:ranking-table-result}
+\end{figure}
+
+\clearpage
+\subsubsection{สร้างกิจกรรม (Create Event)}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/create-event-1.png}
+    \end{center}
+    \caption{หน้าสร้างกิจกรรม First step (Event information)}
+    \label{fig:create-event}
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/create-event-2.png}
+    \end{center}
+    \caption{หน้าสร้างกิจกรรม Second step (Images Dropzone)}
+    \label{fig:create-event-2}
+\end{figure}
+
+\clearpage
+\begin{figure}[ht]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/create-event-3.png}
+    \end{center}
+    \caption{หน้าสร้างกิจกรรม Final step (Check all information before submit)}
+    \label{fig:create-event-3}
+\end{figure}
+
+\clearpage
+\subsection{ผู้นำเสนอผลงาน (Presenter)}
+หลังจากที่เข้าสู่งานกิจกรรมจาก QR Code หรือ Access Link ที่ได้รับจาก Event manager จะเข้าสู่หน้าเข้าสู่ระบบ (Login) และหลังจากที่เข้าสู่ระบบจะเข้าสู่หน้าแสดงข้อมูลรายละเอียดของงานกิจกรรมที่จัดขึ้น และผู้นำเสนอโครการสามารถเพิ่มโครงการเข้าร่วมงานกิจกรรมได้
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/add-project.png}
+    \end{center}
+    \caption{หน้าเพิ่มโครงการที่เข้าร่วมกิจกรรม (Add project)}
+    \label{fig:add-project}
+
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/presenter-dashboard.png}
+    \end{center}
+    \caption{หน้าแสดงโครงการที่สร้าง (Presenter dashboard)}
+    \label{fig:presenter-dashboard}
+\end{figure}
+
+\clearpage
+\begin{figure}[ht]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/project-info.png}
+    \end{center}
+    \caption{หน้าแสดงข้อมูลรายละเอียดของผลงานที่สร้างในกิจกรรม}
+    \label{fig:project-info}
+\end{figure}
+\clearpage %
+
+% \clearpage
+\subsection{ผู้เข้าร่วมงาน (Guest)}
+เมื่อเข้าสู่งานกิจกรรมจาก QR Code หรือ Access Link ที่ได้รับจาก Event manager จะเข้าสู่หน้าเข้าสู่ระบบ (Login) และหลังจากที่เข้าสู่ระบบจะเข้าสู่หน้าแสดงข้อมูลรายละเอียดของงานกิจกรรมที่จัดขึ้น และโครงการที่เข้าร่วมกิจกรรม
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/ui/guest-login.png}
+    \end{center}
+    \caption{หน้าเข้าสู่ระบบ (Login) สำหรับผู้เข้าร่วมกิจกรรม (Guest)}
+    \label{fig:guest-dashboard}
+
+    \begin{center}
+        \includegraphics[height=0.5\textwidth]{img/ui/guest-dashboard.png}
+    \end{center}
+    \caption{หน้าแสดงข้อมูลรายละเอียดของงานกิจกรรมที่จัดขึ้น และโครงการที่เข้าร่วมกิจกรรม}
+    \label{fig:guest-dashboard}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[height=0.7\textwidth]{img/ui/give-virtual-money.png}
+    \end{center}
+    \caption{หน้าให้ Virtual Money และแสดงความคิดเห็นเกี่ยวกับโครงการที่เข้าร่วมกิจกรรม}
+    \label{fig:guest-project-info}
+
+    \begin{center}
+        \includegraphics[height=0.7\textwidth]{img/ui/give-comment.png}
+    \end{center}
+    \caption{หน้าแสดงความคิดเห็นเกี่ยวกับโครงการที่เข้าร่วมกิจกรรม}
+    \label{fig:give-comment}
+\end{figure}
