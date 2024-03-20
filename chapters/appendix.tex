@@ -1,27 +1,71 @@
-\chapter{The first appendix}
+% \chapter{The first appendix}
 
-Text for the first appendix goes here.
+% Text for the first appendix goes here.
 
-\section{Appendix section}
+% \section{Appendix section}
 
-Text for a section in the first appendix goes here.
+% Text for a section in the first appendix goes here.
 
-test ทดสอบฟอนต์ serif ภาษาไทย
+% test ทดสอบฟอนต์ serif ภาษาไทย
 
-\textsf{test ทดสอบฟอนต์ sans serif ภาษาไทย}
+% \textsf{test ทดสอบฟอนต์ sans serif ภาษาไทย}
 
-\verb+test ทดสอบฟอนต์ teletype ภาษาไทย+
+% \verb+test ทดสอบฟอนต์ teletype ภาษาไทย+
 
-\texttt{test ทดสอบฟอนต์ teletype ภาษาไทย}
+% \texttt{test ทดสอบฟอนต์ teletype ภาษาไทย}
 
-\textbf{ตัวหนา serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}
+% \textbf{ตัวหนา serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}
 
-\textit{ตัวเอียง serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}
+% \textit{ตัวเอียง serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}
 
-\textbf{\textit{ตัวหนาเอียง serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}}
+% \textbf{\textit{ตัวหนาเอียง serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}}
 
-\url{https://www.example.com/test_ทดสอบ_url}
+% \url{https://www.example.com/test_ทดสอบ_url}
 
-% \chapter{\ifenglish Manual\else คู่มือการใช้งานระบบ\fi}
+\chapter{\ifenglish Manual\else คู่มือการติดตั้ง (สำหรับการพัฒนา)\fi}
+การพัฒนาระบบของแบ่งออกเป็น 2 ส่วน คือ ฝั่งหน้าบ้าน (Front-End) และฝั่งหลังบ้าน (Back-End) จึงต้องทำการติดตั้งแยกกัน ดังนี้
 
-% Manual goes here.
+\section{\ifenglish Front-End\else ฝั่งหน้าบ้าน (Front-End)\fi}
+\begin{itemize}
+    \item สิ่งที่เครื่องสำหรับติดตั้งต้องมีคือ Node.js และ npm โดยสามารถดาวน์โหลดได้จาก \url{https://nodejs.org/en/download/}
+    \item Download source code หรือ Clone ได้จาก GitHub \url{https://github.com/Panthonf/frontend-gallery-walk.git}
+    \item ทำการเปิด Terminal หรือ Command Prompt และเข้าไปที่โฟลเดอร์ที่เก็บ source code และทำการติดตั้งโดยใช้คำสั่ง \texttt{npm install} เพื่อทำการติดตั้ง package ที่จำเป็น
+    \item เพิ่ม .env ไฟล์เพื่อกำหนดค่าต่าง ๆ ได้แก่
+          \begin{itemize}
+              \item \texttt{VITE\_BACKEND\_ENDPOINT} คือ http://localhost:8080/api/login/google ที่ใช้ในการเชื่อมต่อกับฝั่งหลังบ้าน
+              \item \texttt{VITE\_CHECK\_LOGIN} คือ http://localhost:8080/api/isLoggedIn ที่ใช้ในการเชื่อมต่อกับฝั่งหลังบ้าน
+              \item \texttt{VITE\_BASE\_ENDPOINTMENT} คือ http://localhost:8080/api ที่ใช้ในการเชื่อมต่อกับฝั่งหลังบ้าน
+              \item \texttt{VITE\_FRONTEND\_ENDPOINT} คือ http://localhost:3000 ที่ใช้ในการเชื่อมต่อกับฝั่งหน้าบ้าน
+          \end{itemize}
+    \item หลังจากติดตั้งเสร็จสิ้น สามารถทำการรันโปรแกรมได้โดยใช้คำสั่ง \texttt{npm run dev} และเข้าไปที่ \url{http://localhost:3000} ในเว็บเบราว์เซอร์ จะพบกับหน้าเว็บที่ใช้ในการใช้งาน
+\end{itemize}
+
+\section{\ifenglish Back-End\else ฝั่งหลังบ้าน (Back-End)\fi}
+\begin{itemize}
+    \item สิ่งที่เครื่องสำหรับติดตั้งต้องมีคือ Node.js และ npm โดยสามารถดาวน์โหลดได้จาก \url{https://nodejs.org/en/download/}
+    \item Download source code หรือ Clone ได้จาก GitHub \url{https://github.com/Panthonf/backend-gallery-walk.git}
+    \item ทำการเปิด Terminal หรือ Command Prompt และเข้าไปที่โฟลเดอร์ที่เก็บ source code และทำการติดตั้งโดยใช้คำสั่ง \texttt{npm install} เพื่อทำการติดตั้ง package ที่จำเป็น
+    \item เพิ่ม .env ไฟล์เพื่อกำหนดค่าต่าง ๆ ได้แก่
+          \begin{itemize}
+              \item \texttt{PORT} คือ 8080 ที่ใช้ในการเชื่อมต่อกับฝั่งหน้าบ้าน
+              \item \texttt{CALLBACK\_URI} คือ http://localhost:8080/api/login/google/callback ที่ใช้ในการเชื่อมต่อกับฝั่งหน้าบ้าน
+              \item \texttt{DATABASE\_URL} คือ Connection String ของ PostgreSQL
+              \item \texttt{SECRET\_KEY} คือ คีย์สำหรับการเข้ารหัส Token
+              \item \texttt{NODE\_ENV} คือ development สำหรับการพัฒนา และ production สำหรับการใช้งานจริง
+              \item \texttt{FRONTEND\_URL} คือ http://localhost:3000
+              \item \texttt{MINIO\_ENDPOINT} คือ Minio Server
+              \item \texttt{MINIO\_URL} คือ Minio Server
+              \item \texttt{MINIO\_ACCESSKEY} คือ Minio Access Key
+              \item \texttt{MINIO\_SECRETKEY} คือ Minio Secret Key
+              \item \texttt{MINIO\_PORT} คือ 443
+              \item \texttt{MINIO\_USESSL} คือ true
+              \item \texttt{CALLBACK\_URI\_GUEST} คือ http://localhost:8080/api/guests/login/google/callback
+          \end{itemize}
+    \item ทำการสร้าง Database โดยใช้คำสั่ง \texttt{npx prisma migrate dev --name init} จะทำการสร้าง Database และ Table ตามที่กำหนดไว้ในไฟล์ \texttt{schema.prisma}
+    \item หลังจากติดตั้งเสร็จสิ้น สามารถทำการรันโปรแกรมได้โดยใช้คำสั่ง \texttt{npm run dev} และสามารถเรียกใช้งาน API ผ่าน Postman หรือเว็บเบราว์เซอร์ได้
+\end{itemize}
+
+
+\chapter{\ifenglish User Manual\else คู่มือการใช้งาน\fi}
+สามารถดูวิธีการใช้งานได้จากวิดีโอที่อัพโหลดไว้ที่ \url{https://www.youtube.com/watch?v=} 
+
