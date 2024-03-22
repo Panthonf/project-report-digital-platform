@@ -62,8 +62,8 @@
 \subsubsection{ผู้สร้างงานกิจกรรม (Event Manager)}
 \begin{itemize}
     \item ผู้ใช้เข้าสู่ระบบโดยใช้ Google Account
-    \item ผู้ใช้สร้าง Event ใหม่ โดยป้อนข้อมูลต่างๆ เช่น ชื่องานกิจกรรม รายละเอียด วันเวลา สถานที่ เป็นต้น
-    \item ผู้ใช้สร้าง Event เสร็จสิ้น จะมี QR Code หรือ Access Link สำหรับนำไปให้ผู้นำเสนอโครงการ (Presenter) สำหรับเพิ่มโครงการของตนและผู้เข้าร่วมกิจกรรม (Guest) สำหรับเข้าร่วมกิจกรรม
+    \item ผู้ใช้สร้าง Event ใหม่ โดยป้อนข้อมูลต่าง ๆ เช่น ชื่องานกิจกรรม รายละเอียด วันเวลา สถานที่ เป็นต้น
+    \item ผู้ใช้สร้าง Event เสร็จสิ้น จะมี QR Code หรือ Access Link สำหรับนำไปให้ผู้นำเสนอโครงการ (Presenter) สำหรับเพิ่มโครงการและผู้เข้าร่วมกิจกรรม (Guest) สำหรับเข้าร่วมกิจกรรม
     \item ผู้ใช้สามารถดูผลลัพธ์ (Chart และ Ranking) ของโครงการต่าง ๆ ที่เข้าร่วมกิจกรรมในระหว่างจัดงานกิจกรรม
 
 \end{itemize}
@@ -72,13 +72,13 @@
 \begin{itemize}
     \item ผู้ใช้เข้าสู่ระบบโดยใช้ Google Account
     \item ผู้ใช้สร้าง Project ใหม่ โดยป้อนข้อมูลต่าง ๆ เช่น ชื่อโครงการ รายละเอียด รูปภาพ ลิงก์ และไฟล์อื่น ๆ ที่เกี่ยวข้อง
-    \item ผู้ใช้ดูผลลัพธ์ว่าโครงการของตนได้รับ Virtual Money จากผู้เข้าร่วมกิจกรรม (Guest) และความคิดเห็นเกี่ยวกับโครงการของตนหลังจากเสร็จสิ้นงานกิจกรรม
+    \item ผู้ใช้ดูผลลัพธ์ว่าโครงการได้รับ Virtual Money จากผู้เข้าร่วมกิจกรรม (Guest) และความคิดเห็นเกี่ยวกับโครงการหลังจากเสร็จสิ้นงานกิจกรรม
 
 \end{itemize}
 
 \subsubsection{ผู้เข้าร่วมกิจกรรม (Guest)}
 \begin{itemize}
-    \item ผู้ใช้เข้าร่วม Event โดยใช้ QR COde หรือ Access Link ที่ได้รับจาก Event Manager
+    \item ผู้ใช้เข้าร่วม Event โดยใช้ QR Code หรือ Access Link ที่ได้รับจาก Event Manager
     \item ผู้ใช้เข้าสู่ระบบโดยใช้ Google Account
     \item ผู้ใช้ดูรายละเอียดของงานกิจกรรมที่จัดขึ้น รวมถึงโครงการที่เข้าร่วมกิจกรรม
     \item ผู้ใช้สามารถให้ Virtual Money และแสดงความคิดเห็นเกี่ยวกับ Project ต่าง ๆ ที่เข้าร่วมกิจกรรมได้
@@ -105,7 +105,7 @@
         \verb |last_name_th|  & VARCHAR   & นามสกุลภาษาไทย   \\ \hline
         \verb |first_name_en| & VARCHAR   & ชื่อภาษาอังกฤษ     \\ \hline
         \verb |last_name_en|  & VARCHAR   & นามสกุลภาษาอังกฤษ \\ \hline
-        \verb |email|         & VARCHAR   & อีเมล์            \\ \hline
+        \verb |email|         & VARCHAR   & อีเมล            \\ \hline
         \verb |affiliation|   & TEXT      & สังกัด            \\ \hline
         \verb |profile_pic|   & TEXT      & รูปภาพโปรไฟล์     \\ \hline
         \verb |role|          & VARCHAR   & บทบาทของผู้ใช้งาน  \\ \hline
@@ -256,7 +256,7 @@
 \section{ส่วนเชื่อมต่อระหว่างผู้ใช้งานกับระบบ (User Interface)}
 
 
-โดยแบ่งเป็น 3 ผู้ใช้งาน คือ ผู้สร้างงานกิจกรรม (Event manager), ผู้นำเสนอผลงาน (Presenter), ผู้เข้าร่วมงาน (Guest)
+โดยแบ่งเป็น 3 ส่วนผู้ใช้งาน คือ ผู้สร้างงานกิจกรรม (Event manager), ผู้นำเสนอผลงาน (Presenter), ผู้เข้าร่วมงาน (Guest)
 \subsection{หน้าเริ่มต้นการใช้งาน (Homepage)}
 โดยแบ่ง Tab เป็น Home, Service, About us และ Contact สำหรับ Event manager และ Presenter
 
