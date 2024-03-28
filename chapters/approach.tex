@@ -86,167 +86,190 @@
 
 \newpage
 \subsection{โครงสร้างฐานข้อมูล (Database Schema)}
-\begin{figure}[hb]
-    \begin{center}
-        \includegraphics[width=0.8\textwidth]{img/database schama.png}
-    \end{center}
-    \caption{Database Schema}
-    \label{fig:data_schema}
-\end{figure}
+\begin{center}
+    \begin{figure*}[h]
+        \centering
+        \includegraphics[width=1.0\textwidth]{img/database schama.png}
+        \caption{Database Schema}
+        \label{fig:data_schema}
+    \end{figure*}
+\end{center}
 จากรูปที่ \ref{fig:data_schema} จะเป็นโครงสร้างของฐานข้อมูลที่ใช้ในระบบ โดยมีทั้งหมด 9  ตาราง ดังนี้
+\begin{itemize}
+    \item \textbf{Users} ใช้เก็บข้อมูลผู้ใช้งาน โดยจะเก็บข้อมูลผู้ที่เป็นผู้จัดงานกิจกรรมและผู้นำเสนอโครงการ ซึ่งผู้ใช้งาน 1 คนสามารถเป็นได้ทั้งผู้จัดงานกิจกรรมและผู้นำเสนอโครงการ
+    \item \textbf{Events} ใช้เก็บข้อมูลงานกิจกรรม โดยจะเก็บข้อมูลเช่น ชื่องานกิจกรรม รายละเอียด วันเวลา สถานที่ และข้อมูลอื่น ๆ ที่เกี่ยวข้อง ซึ่ง 1 ผู้ใช้งานสามารถสร้างงานกิจกรรมได้หลายงานกิจกรรม
+    \item \textbf{Projects} ใช้เก็บข้อมูลโครงการ โดยจะเก็บข้อมูลเช่น ชื่อโครงการ รายละเอียด รูปภาพ ลิงก์ และไฟล์อื่น ๆ ที่เกี่ยวข้อง ซึ่ง 1 ผู้ใช้งานสามารถสร้างโครงการได้หลายโครงการ
+    \item \textbf{Virtual Money} ใช้เก็บข้อมูลเงินเสมือนที่โครงการได้รับ ซึ่ง 1 โครงการสามารถมีเงินเสมือนได้หลายรายการจากแขกผู้เข้าร่วมงาน
+    \item \textbf{Guests} ใช้เก็บข้อมูลแขกผู้เข้าร่วมงาน ซึ่งจะเก็บข้อมูลทั่วไป และเก็บจำนวนเงินเสมือนที่มีอยู่ สำหรับให้โครงการต่าง ๆ
+    \item \textbf{Thumbnails} ใช้เก็บข้อมูลรูปภาพ Thumbnail ของงานกิจกรรม โดย 1 งานกิจกรรมสามารถมี Thumbnail ได้เพียง 1 รูป
+    \item \textbf{Documents} ใช้เก็บข้อมูลไฟล์เอกสารที่เกี่ยวข้องกับโครงการ ซึ่ง 1 โครงการสามารถมีไฟล์เอกสารได้หลายไฟล์
+    \item \textbf{Comments} ใช้เก็บข้อมูลความคิดเห็นของแขกผู้เข้าร่วมงานที่มีต่อโครงการ ซึ่ง 1 โครงการสามารถมีความคิดเห็นได้หลายความคิดเห็น
+    \item \textbf{Project Images} ใช้เก็บข้อมูลรูปภาพที่เกี่ยวข้องกับโครงการ ซึ่ง 1 โครงการสามารถมีรูปภาพได้หลายรูปภาพ
+\end{itemize}
 
-
-\begin{table}[hb]
+% \clearpage
+\begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|l|c|l|}
         \hline
-        ชื่อคอลัมน์               & ชนิดข้อมูล   & คำอธิบาย          \\ \hline
-        \verb |first_name_th| & VARCHAR   & ชื่อภาษาไทย       \\ \hline
-        \verb |last_name_th|  & VARCHAR   & นามสกุลภาษาไทย   \\ \hline
-        \verb |first_name_en| & VARCHAR   & ชื่อภาษาอังกฤษ     \\ \hline
-        \verb |last_name_en|  & VARCHAR   & นามสกุลภาษาอังกฤษ \\ \hline
-        \verb |email|         & VARCHAR   & อีเมล            \\ \hline
-        \verb |affiliation|   & TEXT      & สังกัด            \\ \hline
-        \verb |profile_pic|   & TEXT      & รูปภาพโปรไฟล์     \\ \hline
-        \verb |role|          & VARCHAR   & บทบาทของผู้ใช้งาน  \\ \hline
-        \verb |created_at|    & TIMESTAMP & วันที่สร้างข้อมูล     \\ \hline
-        \verb |updated_at|    & TIMESTAMP & วันที่อัปเดตข้อมูล    \\ \hline
+        ชื่อคอลัมน์               & ชนิดข้อมูล          & คำอธิบาย             \\ \hline
+        \textbf{id}           & \textbf{INTEGER} & \textbf{รหัสผู้ใช้งาน} \\ \hline
+        \verb |first_name_th| & VARCHAR          & ชื่อภาษาไทย          \\ \hline
+        \verb |last_name_th|  & VARCHAR          & นามสกุลภาษาไทย      \\ \hline
+        \verb |first_name_en| & VARCHAR          & ชื่อภาษาอังกฤษ        \\ \hline
+        \verb |last_name_en|  & VARCHAR          & นามสกุลภาษาอังกฤษ    \\ \hline
+        \verb |email|         & VARCHAR          & อีเมล               \\ \hline
+        \verb |affiliation|   & TEXT             & สังกัด               \\ \hline
+        \verb |profile_pic|   & TEXT             & รูปภาพโปรไฟล์        \\ \hline
+        \verb |role|          & VARCHAR          & บทบาทของผู้ใช้งาน     \\ \hline
+        \verb |created_at|    & TIMESTAMP        & วันที่สร้างข้อมูล        \\ \hline
+        \verb |updated_at|    & TIMESTAMP        & วันที่อัปเดตข้อมูล       \\ \hline
     \end{tabular}
     \caption{ตารางข้อมูลผู้ใช้งาน (Users)}
     \label{tab:user_data}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
-        \hline
-        ชื่อคอลัมน์                  & ชนิดข้อมูล   & คำอธิบาย                                 \\ \hline
-        \verb |event_name|       & VARCHAR   & ชื่องานกิจกรรม                            \\ \hline
-        \verb |start_date|       & DATE      & วันที่เริ่มงานกิจกรรม                        \\ \hline
-        \verb |end_date|         & DATE      & วันที่สิ้นสุดงานกิจกรรม                       \\ \hline
-        \verb |description|      & TEXT      & รายละเอียดงานกิจกรรม                     \\ \hline
-        \verb |submit_start|     & DATE      & วันที่เริ่มรับส่งโครงการ                      \\ \hline
-        \verb |submit_end|       & DATE      & วันที่สิ้นสุดรับส่งโครงการ                     \\ \hline
-        \verb |number_of_member| & INTEGER   & จำนวนสมาชิกของโครงการ                    \\ \hline
-        \verb |virtual_money|    & INTEGER   & จำนวนเงินเสมือนที่จะให้แขกผู้เข้าร่วมงาน (Guest) \\ \hline
-        \verb |unit_money|       & VARCHAR   & หน่วยเงินเสมือนที่จะให้แขกผู้เข้าร่วมงาน (Guest) \\ \hline
-        \verb |published|        & BOOLEAN   & สถานะการเผยแพร่ของงานกิจกรรม             \\ \hline
-        \verb |organization|     & TEXT      & สังกัดของงานกิจกรรม                       \\ \hline
-        \verb |video_link|       & TEXT      & ลิงก์วิดีโอที่เกี่ยวข้องกับงานกิจกรรม             \\ \hline
-        \verb |user_id|          & INTEGER   & รหัสผู้ใช้งานที่สร้างงานกิจกรรม                \\ \hline
-        \verb |location|         & TEXT      & สถานที่จัดงานกิจกรรม                       \\ \hline
-        \verb |created_at|       & TIMESTAMP & วันที่สร้างข้อมูล                            \\ \hline
-        \verb |updated_at|       & TIMESTAMP & วันที่อัปเดตข้อมูล                           \\ \hline
-    \end{tabular}
+    \begin{adjustbox}{width=0.8\textwidth} % Add this line before \begin{tabular}
+        \begin{tabular}{|l|c|l|}
+            \hline
+            ชื่อคอลัมน์                  & ชนิดข้อมูล          & คำอธิบาย                                 \\ \hline
+            \textbf{id}              & \textbf{INTEGER} & \textbf{รหัสงานกิจกรรม}                  \\ \hline
+            \verb |event_name|       & VARCHAR          & ชื่องานกิจกรรม                            \\ \hline
+            \verb |start_date|       & DATE             & วันที่เริ่มงานกิจกรรม                        \\ \hline
+            \verb |end_date|         & DATE             & วันที่สิ้นสุดงานกิจกรรม                       \\ \hline
+            \verb |description|      & TEXT             & รายละเอียดงานกิจกรรม                     \\ \hline
+            \verb |submit_start|     & DATE             & วันที่เริ่มรับส่งโครงการ                      \\ \hline
+            \verb |submit_end|       & DATE             & วันที่สิ้นสุดรับส่งโครงการ                     \\ \hline
+            \verb |number_of_member| & INTEGER          & จำนวนสมาชิกของโครงการ                    \\ \hline
+            \verb |virtual_money|    & INTEGER          & จำนวนเงินเสมือนที่จะให้แขกผู้เข้าร่วมงาน (Guest) \\ \hline
+            \verb |unit_money|       & VARCHAR          & หน่วยเงินเสมือนที่จะให้แขกผู้เข้าร่วมงาน (Guest) \\ \hline
+            \verb |published|        & BOOLEAN          & สถานะการเผยแพร่ของงานกิจกรรม             \\ \hline
+            \verb |organization|     & TEXT             & สังกัดของงานกิจกรรม                       \\ \hline
+            \verb |video_link|       & TEXT             & ลิงก์วิดีโอที่เกี่ยวข้องกับงานกิจกรรม             \\ \hline
+            \underline{user\_id}     & INTEGER          & รหัสผู้ใช้งานที่สร้างงานกิจกรรม                \\ \hline
+            \verb |location|         & TEXT             & สถานที่จัดงานกิจกรรม                       \\ \hline
+            \verb |created_at|       & TIMESTAMP        & วันที่สร้างข้อมูล                            \\ \hline
+            \verb |updated_at|       & TIMESTAMP        & วันที่อัปเดตข้อมูล                           \\ \hline
+        \end{tabular}
+    \end{adjustbox} % Add this line after \end{tabular}
     \caption{ตารางข้อมูลงานกิจกรรม (Events)}
     \label{tab:event_data}
 \end{table}
 
-\begin{table}[hb]
+\begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|l|c|l|}
         \hline
-        ชื่อคอลัมน์             & ชนิดข้อมูล   & คำอธิบาย                     \\ \hline
-        \verb |title|       & VARCHAR   & ชื่อโครงการ                  \\ \hline
-        \verb |description| & TEXT      & รายละเอียดของโครงการ        \\ \hline
-        \verb |user_id|     & INTEGER   & รหัสผู้ใช้งานที่สร้างโครงการ      \\ \hline
-        \verb |event_id|    & INTEGER   & รหัสงานกิจกรรมที่โครงการเข้าร่วม \\ \hline
-        \verb |created_at|  & TIMESTAMP & วันที่สร้างข้อมูล                \\ \hline
+        ชื่อคอลัมน์               & ชนิดข้อมูล          & คำอธิบาย                     \\ \hline
+        \textbf{id}           & \textbf{INTEGER} & \textbf{รหัสโครงการ}        \\ \hline
+        \verb |title|         & VARCHAR          & ชื่อโครงการ                  \\ \hline
+        \verb |description|   & TEXT             & รายละเอียดของโครงการ        \\ \hline
+        \underline{user\_id}  & INTEGER          & รหัสผู้ใช้งานที่สร้างโครงการ      \\ \hline
+        \underline{event\_id} & INTEGER          & รหัสงานกิจกรรมที่โครงการเข้าร่วม \\ \hline
+        \verb |created_at|    & TIMESTAMP        & วันที่สร้างข้อมูล                \\ \hline
     \end{tabular}
     \caption{ตารางข้อมูลโครงการ (Projects)}
     \label{tab:project_data}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|l|c|l|}
         \hline
-        ชื่อคอลัมน์            & ชนิดข้อมูล   & คำอธิบาย                   \\ \hline
-        \verb |amount|     & INTEGER   & จำนวนเงินเสมือนที่ได้รับ        \\ \hline
-        \verb |project_id| & INTEGER   & รหัสโครงการที่ได้รับเงิน       \\ \hline
-        \verb |event_id|   & INTEGER   & รหัสงานกิจกรรมที่ได้รับเงิน     \\ \hline
-        \verb |guest_id|   & INTEGER   & รหัสผู้เข้าร่วมกิจกรรมที่ได้รับเงิน \\ \hline
-        \verb |created_at| & TIMESTAMP & วันที่สร้างข้อมูล              \\ \hline
-        \verb |updated_at| & TIMESTAMP & วันที่อัปเดตข้อมูล             \\ \hline
+        ชื่อคอลัมน์                 & ชนิดข้อมูล          & คำอธิบาย                      \\ \hline
+        \textbf{id}             & \textbf{INTEGER} & \textbf{รหัสโครงการที่ได้รับเงิน} \\ \hline
+        \verb |amount|          & INTEGER          & จำนวนเงินเสมือนที่ได้รับ           \\ \hline
+        \underline{project\_id} & INTEGER          & รหัสโครงการที่ได้รับเงิน          \\ \hline
+        \underline{event\_id}   & INTEGER          & รหัสงานกิจกรรมที่ได้รับเงิน        \\ \hline
+        \underline{guest\_id}   & INTEGER          & รหัสผู้เข้าร่วมกิจกรรมที่ได้รับเงิน    \\ \hline
+        \verb |created_at|      & TIMESTAMP        & วันที่สร้างข้อมูล                 \\ \hline
+        \verb |updated_at|      & TIMESTAMP        & วันที่อัปเดตข้อมูล                \\ \hline
     \end{tabular}
     \caption{ตารางข้อมูลเงินเสมือน (Virtual Money)}
     \label{tab:virtual_money_data}
 \end{table}
 
-\begin{table}[hb]
+\begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|l|c|l|}
         \hline
-        ชื่อคอลัมน์               & ชนิดข้อมูล   & คำอธิบาย           \\ \hline
-        \verb |first_name_th| & VARCHAR   & ชื่อจริงภาษาไทย     \\ \hline
-        \verb |last_name_th|  & VARCHAR   & นามสกุลภาษาไทย    \\ \hline
-        \verb |first_name_en| & VARCHAR   & ชื่อจริงภาษาอังกฤษ   \\ \hline
-        \verb |last_name_en|  & VARCHAR   & นามสกุลภาษาอังกฤษ  \\ \hline
-        \verb |email|         & TEXT      & ที่อยู่อีเมล          \\ \hline
-        \verb |profile_pic|   & TEXT      & รูปภาพโปรไฟล์      \\ \hline
-        \verb |virtual_money| & INTEGER   & จำนวนเงินเสมือนที่มีอยู่ \\ \hline
-        \verb |created_at|    & TIMESTAMP & วันที่สร้างข้อมูล      \\ \hline
+        ชื่อคอลัมน์               & ชนิดข้อมูล          & คำอธิบาย                    \\ \hline
+        \textbf{id}           & \textbf{INTEGER} & \textbf{รหัสผู้เข้าร่วมกิจกรรม} \\ \hline
+        \verb |first_name_th| & VARCHAR          & ชื่อจริงภาษาไทย              \\ \hline
+        \verb |last_name_th|  & VARCHAR          & นามสกุลภาษาไทย             \\ \hline
+        \verb |first_name_en| & VARCHAR          & ชื่อจริงภาษาอังกฤษ            \\ \hline
+        \verb |last_name_en|  & VARCHAR          & นามสกุลภาษาอังกฤษ           \\ \hline
+        \verb |email|         & TEXT             & ที่อยู่อีเมล                   \\ \hline
+        \verb |profile_pic|   & TEXT             & รูปภาพโปรไฟล์               \\ \hline
+        \verb |virtual_money| & INTEGER          & จำนวนเงินเสมือนที่มีอยู่          \\ \hline
+        \verb |created_at|    & TIMESTAMP        & วันที่สร้างข้อมูล               \\ \hline
     \end{tabular}
     \caption{ตารางข้อมูลแขกผู้เข้าร่วมกิจกรรม (Guests)}
     \label{tab:guest_data}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|l|c|l|}
         \hline
-        ชื่อคอลัมน์               & ชนิดข้อมูล   & คำอธิบาย                \\ \hline
-        \verb |event_id|      & INTEGER   & รหัสงานกิจกรรมที่ได้รับเงิน  \\ \hline
-        \verb |thumbnail|     & TEXT      & รูปภาพตัวอย่างโครงการ    \\ \hline
-        \verb |thumbnail_url| & TEXT      & ลิงก์รูปภาพตัวอย่างโครงการ \\ \hline
-        \verb |created_at|    & TIMESTAMP & วันที่สร้างข้อมูล           \\ \hline
-        \verb |updated_at|    & TIMESTAMP & วันที่อัปเดตข้อมูล          \\ \hline
+        ชื่อคอลัมน์               & ชนิดข้อมูล          & คำอธิบาย                       \\ \hline
+        \textbf{id}           & \textbf{INTEGER} & \textbf{รหัสภาพตัวอย่างโครงการ} \\ \hline
+        \underline{event\_id} & INTEGER          & รหัสงานกิจกรรมที่ได้รับเงิน         \\ \hline
+        \verb |thumbnail|     & TEXT             & รูปภาพตัวอย่างโครงการ           \\ \hline
+        \verb |thumbnail_url| & TEXT             & ลิงก์รูปภาพตัวอย่างโครงการ        \\ \hline
+        \verb |created_at|    & TIMESTAMP        & วันที่สร้างข้อมูล                  \\ \hline
+        \verb |updated_at|    & TIMESTAMP        & วันที่อัปเดตข้อมูล                 \\ \hline
     \end{tabular}
     \caption{ตารางข้อมูลภาพตัวอย่างโครงการ (Thumbnails)}
     \label{tab:thumbnail_data}
 \end{table}
 
-\begin{table}[hb]
+\begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|l|c|l|}
         \hline
-        ชื่อคอลัมน์               & ชนิดข้อมูล   & คำอธิบาย                     \\ \hline
-        \verb |project_id|    & INTEGER   & รหัสโครงการที่เกี่ยวข้องกับเอกสาร \\ \hline
-        \verb |document_name| & TEXT      & ชื่อเอกสาร                   \\ \hline
-        \verb |document_url|  & TEXT      & ลิงก์เอกสาร                  \\ \hline
-        \verb |created_at|    & TIMESTAMP & วันที่สร้างข้อมูล                \\ \hline
-        \verb |updated_at|    & TIMESTAMP & วันที่อัปเดตข้อมูล               \\ \hline
+        ชื่อคอลัมน์                 & ชนิดข้อมูล          & คำอธิบาย                     \\ \hline
+        \textbf{id}             & \textbf{INTEGER} & \textbf{รหัสเอกสาร}         \\ \hline
+        \underline{project\_id} & INTEGER          & รหัสโครงการที่เกี่ยวข้องกับเอกสาร \\ \hline
+        \verb |document_name|   & TEXT             & ชื่อเอกสาร                   \\ \hline
+        \verb |document_url|    & TEXT             & ลิงก์เอกสาร                  \\ \hline
+        \verb |created_at|      & TIMESTAMP        & วันที่สร้างข้อมูล                \\ \hline
+        \verb |updated_at|      & TIMESTAMP        & วันที่อัปเดตข้อมูล               \\ \hline
     \end{tabular}
     \caption{ตารางข้อมูลเอกสารที่เกี่ยวข้องกับงานกิจกรรม (Documents)}
     \label{tab:document_data}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|l|c|l|}
         \hline
-        ชื่อคอลัมน์                & ชนิดข้อมูล   & คำอธิบาย                        \\ \hline
-        \verb |project_id|     & INTEGER   & รหัสโครงการที่เกี่ยวข้องกับความคิดเห็น \\ \hline
-        \verb |comment_better| & TEXT      & ความคิดเห็นที่ดีของโครงการ         \\ \hline
-        \verb |comment_idea|   & TEXT      & ความคิดเห็นที่เสนอไอเดียใหม่        \\ \hline
-        \verb |comment_ilike|  & TEXT      & ความคิดเห็นที่ชอบของโครงการ       \\ \hline
-        \verb |created_at|     & TIMESTAMP & วันที่สร้างข้อมูล                   \\ \hline
-        \verb |updated_at|     & TIMESTAMP & วันที่อัปเดตข้อมูล                  \\ \hline
+        ชื่อคอลัมน์                 & ชนิดข้อมูล          & คำอธิบาย                        \\ \hline
+        \textbf{id}             & \textbf{INTEGER} & \textbf{รหัสความคิดเห็น}         \\ \hline
+        \underline{project\_id} & INTEGER          & รหัสโครงการที่เกี่ยวข้องกับความคิดเห็น \\ \hline
+        \verb |comment_better|  & TEXT             & ความคิดเห็นที่ดีของโครงการ         \\ \hline
+        \verb |comment_idea|    & TEXT             & ความคิดเห็นที่เสนอไอเดียใหม่        \\ \hline
+        \verb |comment_ilike|   & TEXT             & ความคิดเห็นที่ชอบของโครงการ       \\ \hline
+        \verb |created_at|      & TIMESTAMP        & วันที่สร้างข้อมูล                   \\ \hline
+        \verb |updated_at|      & TIMESTAMP        & วันที่อัปเดตข้อมูล                  \\ \hline
     \end{tabular}
     \caption{ตารางข้อมูลความคิดเห็นของผู้เข้าร่วมกิจกรรม (Comments)}
     \label{tab:comment_data}
 \end{table}
 
-\begin{table}[hb]
+\begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|l|c|l|}
         \hline
-        ชื่อคอลัมน์                   & ชนิดข้อมูล   & คำอธิบาย                    \\ \hline
-        \verb |project_id|        & INTEGER   & รหัสโครงการที่เกี่ยวข้องกับรูปภาพ \\ \hline
-        \verb |project_image|     & TEXT      & รูปภาพโครงการ              \\ \hline
-        \verb |project_image_url| & TEXT      & ลิงก์รูปภาพโครงการ           \\ \hline
-        \verb |created_at|        & TIMESTAMP & วันที่สร้างข้อมูล               \\ \hline
-        \verb |updated_at|        & TIMESTAMP & วันที่อัปเดตข้อมูล              \\ \hline
+        ชื่อคอลัมน์                   & ชนิดข้อมูล          & คำอธิบาย                             \\ \hline
+        \textbf{id}               & \textbf{INTEGER} & \textbf{รหัสรูปภาพที่เกี่ยวข้องกับโครงการ} \\ \hline
+        \underline{project\_id}   & INTEGER          & รหัสโครงการที่เกี่ยวข้องกับรูปภาพ          \\ \hline
+        \verb |project_image|     & TEXT             & รูปภาพโครงการ                       \\ \hline
+        \verb |project_image_url| & TEXT             & ลิงก์รูปภาพโครงการ                    \\ \hline
+        \verb |created_at|        & TIMESTAMP        & วันที่สร้างข้อมูล                        \\ \hline
+        \verb |updated_at|        & TIMESTAMP        & วันที่อัปเดตข้อมูล                       \\ \hline
     \end{tabular}
     \caption{ตารางข้อมูลรูปภาพที่เกี่ยวข้องกับโครงการ (Project Images)}
     \label{tab:project_images_data}
@@ -288,6 +311,8 @@
     \caption{หน้า Contact}
     \label{fig:contact}
 \end{figure}
+จากรูป \ref{fig:homepage} \ref{fig:service} \ref{fig:aboutus} และ \ref{fig:contact} จะเป็นหน้าเริ่มต้นการใช้งานของระบบ โดยแบ่ง Tab เป็น Home, Service, About us และ Contact สำหรับ Event manager และ Presenter
+
 
 \subsection{หน้าเข้าสู่ระบบ (Login)}
 Login ด้วย Google account สำหรับ Event manager และ Presenter
@@ -299,16 +324,20 @@ Login ด้วย Google account สำหรับ Event manager และ Pre
     \caption{หน้า Login สำหรับ Event manager และ Presenter}
     \label{fig:login}
 \end{figure}
+จากรูป \ref{fig:login} จะเป็นหน้าเข้าสู่ระบบ (Login) โดยใช้ Google Account สำหรับ Event manager และ Presenter
 
+\clearpage
 \subsection{ผู้สร้างงานกิจกรรม (Event manager)}
 \begin{figure}[h!] %
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{img/ui/event-dashboard.png}
+        \includegraphics[width=\textwidth]{img/ui/event-dashboard.png}
     \end{center}
     \caption{หน้าแสดงกิจกรรมที่สร้าง (Event manager dashboard)}
     \label{fig:event-dashboard}
 \end{figure}
+จากรูป \ref{fig:event-dashboard} จะเป็นหน้าแสดงกิจกรรมที่สร้าง (Event manager dashboard) ในรูปแบบการ์ดที่จะแสดงรายละเอียดของงานกิจกรรม ได้แก่ ชื่องานกิจกรรม วันเวลาที่เริ่มงานกิจกรรม วันเวลาที่จบงานกิจกรรม คำอธิบายงานกิจกรรมและจำนวนโครงการในวานกิตกรรมนั้น ๆ โดยหน้านี้ยังแบ่ง Tab เป็น Event Manager และ Presenter ในส่วน Presenter จะแสดงผลโครงการที่เคยสร้างไว้ และจากหน้านี้ผู้สร้างงานกิจกรรมสามารถสร้างงานกิจกรรมใหม่ได้
 
+\clearpage
 \begin{figure}
     \begin{center}
         \includegraphics[width=0.9\textwidth]{img/ui/event-info.png}
@@ -335,7 +364,9 @@ Login ด้วย Google account สำหรับ Event manager และ Pre
     \end{center}
     \caption{ตารางแสดงผลลัพธ์ของโครงการที่เข้าร่วมกิจกรรม}
     \label{fig:ranking-table-result}
+    จากรูป \ref{fig:event-info} \ref{fig:project-list} \ref{fig:result} และ \ref{fig:ranking-table-result} จะเป็นหน้าแสดงข้อมูลรายละเอียดของกิจกรรมที่สร้าง โดยแบ่ง Tab เป็น Event information ซึ่งจะแสดงข้อมูลรายละเอียดของงานกิจกรรม, Project ซึ่งจะแสดงรายการโครงการที่เข้าร่วมกิจกรรมและ Result ซึ่งจะแสดงผลลัพธ์ของโครงการที่เข้าร่วมกิจกรรม จำนวน Virtual Money ที่ได้รับและ Ranking ของโครงการ
 \end{figure}
+
 
 \clearpage
 \subsubsection{สร้างกิจกรรม (Create Event)}
@@ -360,6 +391,7 @@ Login ด้วย Google account สำหรับ Event manager และ Pre
     \caption{หน้าสร้างกิจกรรม Final step (Check all information before submit)}
     \label{fig:create-event-3}
 \end{figure}
+จากรูป \ref{fig:create-event} \ref{fig:create-event-2} และ \ref{fig:create-event-3} จะเป็นหน้าสร้างกิจกรรม โดยแบ่งเป็น 3 ขั้นตอน คือ First step (Event information) ซึ่งจะให้กรอกข้อมูลรายละเอียดของงานกิจกรรม, Second step (Images Dropzone) ซึ่งจะให้เพิ่มรูปภาพตัวอย่างของโครงการ และ Final step (Check all information before submit) ซึ่งจะแสดงข้อมูลทั้งหมดก่อนที่จะสร้างงานกิจกรรม
 
 \clearpage
 \subsection{ผู้นำเสนอผลงาน (Presenter)}
@@ -377,6 +409,8 @@ Login ด้วย Google account สำหรับ Event manager และ Pre
     \caption{หน้าแสดงโครงการที่สร้าง (Presenter dashboard)}
     \label{fig:presenter-dashboard}
 \end{figure}
+\\
+จากรูป \ref{fig:add-project} และ \ref{fig:presenter-dashboard} จะเป็นหน้าเพิ่มโครงการที่เข้าร่วมกิจกรรม (Add project) และ หน้าแสดงโครงการที่สร้าง (Presenter dashboard)
 
 \clearpage
 \begin{figure}[ht]
@@ -386,6 +420,7 @@ Login ด้วย Google account สำหรับ Event manager และ Pre
     \caption{หน้าแสดงข้อมูลรายละเอียดของผลงานที่สร้างในกิจกรรม}
     \label{fig:project-info}
 \end{figure}
+จากรูป \ref{fig:project-info} จะเป็นหน้าแสดงข้อมูลรายละเอียดของผลงานที่สร้างในกิจกรรม ได้แก่ ชื่อโครงการ, รายละเอียดโครงการ, รูปภาพโครงการ, เอกสารที่เกี่ยวข้องกับโครงการและจำนวน Virtual Money ที่ได้รับและความคิดเห็นเกี่ยวกับโครงการ
 \clearpage %
 
 % \clearpage
